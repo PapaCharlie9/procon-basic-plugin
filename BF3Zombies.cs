@@ -118,7 +118,7 @@ public string GetPluginName() {
 }
 
 public string GetPluginVersion() {
-	return "0.0.0.1";
+	return "0.0.0.2";
 }
 
 public string GetPluginAuthor() {

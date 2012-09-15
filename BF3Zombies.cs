@@ -4,7 +4,6 @@ by PapaCharlie9@gmail.com
 
 Free to use as is in any way you want with no warranty.
 
-Format: UTF-16 LE with BOM
 */
 
 using System;
@@ -196,7 +195,7 @@ public void OnPluginDisable() {
 public override void OnVersion(string serverType, string version) { }
 
 public override void OnServerInfo(CServerInfo serverInfo) {
-	ConsoleWrite("Debug level = " + fDebugLevel);
+	ConsoleWrite("Debug level utf8 = " + fDebugLevel);
 }
 
 public override void OnResponseError(List<string> requestWords, string error) { }

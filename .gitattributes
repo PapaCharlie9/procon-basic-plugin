@@ -2,7 +2,7 @@
 * text=auto
 
 # Custom for Visual Studio
-*.cs     text diff merge
+*.cs     diff=astextplain merge=astextplain
 *.sln    merge=union
 *.csproj merge=union
 *.vbproj merge=union

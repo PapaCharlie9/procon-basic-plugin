@@ -195,7 +195,7 @@ public void OnPluginDisable() {
 public override void OnVersion(string serverType, string version) { }
 
 public override void OnServerInfo(CServerInfo serverInfo) {
-	ConsoleWrite("Debug level utf8 = " + fDebugLevel);
+	ConsoleWrite("Debug level = " + fDebugLevel);
 }
 
 public override void OnResponseError(List<string> requestWords, string error) { }

@@ -1,6 +1,8 @@
 BF3 ZOMBIES!
 ============
 
+__UNDER CONSTRUCTION! THIS PLUGIN IS NOT READY FOR USE YET!__
+
 This is a [PRoCon 1.x plugin for Battlefield 3](https://github.com/Myrcon/Procon-1) that 
 implements a variant of the infantry only Team DeathMatch game mode. 
 The US team members are the last surving humans 

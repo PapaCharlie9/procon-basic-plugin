@@ -1,4 +1,4 @@
-/* BF3Zombies.cs
+/* BasicPlugin.cs
 
 by PapaCharlie9@gmail.com
 
@@ -36,18 +36,18 @@ namespace PRoConEvents
 using EventType = PRoCon.Core.Events.EventType;
 using CapturableEvent = PRoCon.Core.Events.CapturableEvents;
 
-public class BF3Zombies : PRoConPluginAPI, IPRoConPluginInterface
+public class BasicPlugin : PRoConPluginAPI, IPRoConPluginInterface
 {
 
 /* Inherited:
-    this.PunkbusterPlayerInfoList = new Dictionary<string, CPunkbusterInfo>();
-    this.FrostbitePlayerInfoList = new Dictionary<string, CPlayerInfo>();
+    this.PunkbusterPlayerInfoList = new Dictionary<String, CPunkbusterInfo>();
+    this.FrostbitePlayerInfoList = new Dictionary<String, CPlayerInfo>();
 */
 
 private bool fIsEnabled;
 private int fDebugLevel;
 
-public BF3Zombies() {
+public BasicPlugin() {
 	fIsEnabled = false;
 	fDebugLevel = 2;
 }
@@ -55,7 +55,7 @@ public BF3Zombies() {
 public enum MessageType { Warning, Error, Exception, Normal };
 
 public String FormatMessage(String msg, MessageType type) {
-	String prefix = "[^bBF3 Zombies!^n] ";
+	String prefix = "[^b" + GetPluginName() + "^n] ";
 
 	if (type.Equals(MessageType.Warning))
 		prefix += "^1^bWARNING^0^n: ";
@@ -73,12 +73,12 @@ public void LogWrite(String msg)
 	this.ExecuteCommand("procon.protected.pluginconsole.write", msg);
 }
 
-public void ConsoleWrite(string msg, MessageType type)
+public void ConsoleWrite(String msg, MessageType type)
 {
 	LogWrite(FormatMessage(msg, type));
 }
 
-public void ConsoleWrite(string msg)
+public void ConsoleWrite(String msg)
 {
 	ConsoleWrite(msg, MessageType.Normal);
 }
@@ -98,7 +98,7 @@ public void ConsoleException(String msg)
 	ConsoleWrite(msg, MessageType.Exception);
 }
 
-public void DebugWrite(string msg, int level)
+public void DebugWrite(String msg, int level)
 {
 	if (fDebugLevel >= level) ConsoleWrite(msg, MessageType.Normal);
 }
@@ -106,32 +106,32 @@ public void DebugWrite(string msg, int level)
 
 public void ServerCommand(params String[] args)
 {
-	List<string> list = new List<string>();
+	List<String> list = new List<String>();
 	list.Add("procon.protected.send");
 	list.AddRange(args);
 	this.ExecuteCommand(list.ToArray());
 }
 
 
-public string GetPluginName() {
-	return "BF3 Zombies";
+public String GetPluginName() {
+	return "BasicPlugin";
 }
 
-public string GetPluginVersion() {
-	return "0.0.0.2";
+public String GetPluginVersion() {
+	return "0.0.0.1";
 }
 
-public string GetPluginAuthor() {
+public String GetPluginAuthor() {
 	return "PapaCharlie9";
 }
 
-public string GetPluginWebsite() {
+public String GetPluginWebsite() {
 	return "TBD";
 }
 
-public string GetPluginDescription() {
+public String GetPluginDescription() {
 	return @"
-<h1>THIS PLUGIN IS NOT READY FOR USE YET!</h1>
+<h1>Your Title Here</h1>
 <p>TBD</p>
 
 <h2>Description</h2>
@@ -159,7 +159,7 @@ public List<CPluginVariable> GetDisplayPluginVariables() {
 
 	List<CPluginVariable> lstReturn = new List<CPluginVariable>();
 
-	lstReturn.Add(new CPluginVariable("BF3 Zombies|Debug level", fDebugLevel.GetType(), fDebugLevel));
+	lstReturn.Add(new CPluginVariable("Settings|Debug level", fDebugLevel.GetType(), fDebugLevel));
 
 	return lstReturn;
 }
@@ -168,7 +168,7 @@ public List<CPluginVariable> GetPluginVariables() {
 	return GetDisplayPluginVariables();
 }
 
-public void SetPluginVariable(string strVariable, string strValue) {
+public void SetPluginVariable(String strVariable, String strValue) {
 	if (Regex.Match(strVariable, @"Debug level").Success) {
 		int tmp = 2;
 		int.TryParse(strValue, out tmp);
@@ -177,7 +177,7 @@ public void SetPluginVariable(string strVariable, string strValue) {
 }
 
 
-public void OnPluginLoaded(string strHostName, string strPort, string strPRoConVersion) {
+public void OnPluginLoaded(String strHostName, String strPort, String strPRoConVersion) {
 	this.RegisterEvents(this.GetType().Name, "OnVersion", "OnServerInfo", "OnResponseError", "OnListPlayers", "OnPlayerJoin", "OnPlayerLeft", "OnPlayerKilled", "OnPlayerSpawned", "OnPlayerTeamChange", "OnGlobalChat", "OnTeamChat", "OnSquadChat", "OnRoundOverPlayers", "OnRoundOver", "OnRoundOverTeamScores", "OnLoadingLevel", "OnLevelStarted", "OnLevelLoaded");
 }
 
@@ -192,18 +192,18 @@ public void OnPluginDisable() {
 }
 
 
-public override void OnVersion(string serverType, string version) { }
+public override void OnVersion(String serverType, String version) { }
 
 public override void OnServerInfo(CServerInfo serverInfo) {
 	ConsoleWrite("Debug level = " + fDebugLevel);
 }
 
-public override void OnResponseError(List<string> requestWords, string error) { }
+public override void OnResponseError(List<String> requestWords, String error) { }
 
 public override void OnListPlayers(List<CPlayerInfo> players, CPlayerSubset subset) {
 }
 
-public override void OnPlayerJoin(string soldierName) {
+public override void OnPlayerJoin(String soldierName) {
 }
 
 public override void OnPlayerLeft(CPlayerInfo playerInfo) {
@@ -211,15 +211,15 @@ public override void OnPlayerLeft(CPlayerInfo playerInfo) {
 
 public override void OnPlayerKilled(Kill kKillerVictimDetails) { }
 
-public override void OnPlayerSpawned(string soldierName, Inventory spawnedInventory) { }
+public override void OnPlayerSpawned(String soldierName, Inventory spawnedInventory) { }
 
-public override void OnPlayerTeamChange(string soldierName, int teamId, int squadId) { }
+public override void OnPlayerTeamChange(String soldierName, int teamId, int squadId) { }
 
-public override void OnGlobalChat(string speaker, string message) { }
+public override void OnGlobalChat(String speaker, String message) { }
 
-public override void OnTeamChat(string speaker, string message, int teamId) { }
+public override void OnTeamChat(String speaker, String message, int teamId) { }
 
-public override void OnSquadChat(string speaker, string message, int teamId, int squadId) { }
+public override void OnSquadChat(String speaker, String message, int teamId, int squadId) { }
 
 public override void OnRoundOverPlayers(List<CPlayerInfo> players) { }
 
@@ -227,14 +227,14 @@ public override void OnRoundOverTeamScores(List<TeamScore> teamScores) { }
 
 public override void OnRoundOver(int winningTeamId) { }
 
-public override void OnLoadingLevel(string mapFileName, int roundsPlayed, int roundsTotal) { }
+public override void OnLoadingLevel(String mapFileName, int roundsPlayed, int roundsTotal) { }
 
 public override void OnLevelStarted() { }
 
-public override void OnLevelLoaded(string mapFileName, string Gamemode, int roundsPlayed, int roundsTotal) { } // BF3
+public override void OnLevelLoaded(String mapFileName, String Gamemode, int roundsPlayed, int roundsTotal) { } // BF3
 
 
-} // end BF3Zombies
+} // end BasicPlugin
 
 } // end namespace PRoConEvents
 

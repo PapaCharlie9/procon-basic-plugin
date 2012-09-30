@@ -1,18 +1,16 @@
-BF3 ZOMBIES!
-============
+ProCon 1.x BF3 Basic Plugin
+===========================
 
 __UNDER CONSTRUCTION! THIS PLUGIN IS NOT READY FOR USE YET!__
 
 This is a [PRoCon 1.x plugin for Battlefield 3](https://github.com/Myrcon/Procon-1) that 
-implements a variant of the infantry only Team DeathMatch game mode. 
-The US team members are the last surving humans 
-in an area stricken by a mutated virus that turns people into zombies.
-The RU team members are zombies.
+doesn't do anything. It is just the skeleton of a plugin. You can use it as
+the starting point of a new plugin. It has many of the override functions
+and convenience utilities that you need in most plugins.
 
-Zombies are only allowed to use a knife as a weapon, but they are hard to kill.
+Fork a copy of it and start adding your own functionality. Change the
+name of the file, the class and anything else that needs changing.
 
-Humans may use any weapon except explosives and rockets.
+__To Do__
 
-Each round starts with one zombie and everyone else a human. Humans win if they kill
-a specified number of zombies (20 to 50). Zombies win if the turn all the humans into
-zombies.
+* In-Game command registration/unregistration
